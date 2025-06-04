@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ArrowLeft,
-  Heart,
-  Share2,
-  Phone,
-  MessageCircle,
-  Star,
   ChevronLeft,
   ChevronRight,
+  Heart,
+  MessageCircle,
+  Phone,
+  Share2,
+  Star,
 } from "lucide-react";
+import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 // Mock data - trong thực tế sẽ fetch từ API
 const vehicle = {
