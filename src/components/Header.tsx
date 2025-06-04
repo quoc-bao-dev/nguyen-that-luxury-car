@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
 
@@ -7,12 +8,12 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
-    { name: 'Trang chủ', href: '#home' },
-    { name: 'Giới thiệu', href: '#about' },
-    { name: 'Xe cao cấp', href: '#vehicles' },
-    { name: 'Dịch vụ', href: '#services' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Liên hệ', href: '#contact' }
+    { name: 'Trang chủ', href: '/' },
+    { name: 'Giới thiệu', href: '/#about' },
+    { name: 'Xe cao cấp', href: '/products' },
+    { name: 'Dịch vụ', href: '/services' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Liên hệ', href: '/contact' }
   ];
 
   return (
@@ -39,32 +40,44 @@ const Header = () => {
 
         {/* Main navigation */}
         <div className="flex justify-between items-center py-4">
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center">
             <h1 className="font-playfair text-2xl md:text-3xl font-bold text-black">
               Thật Nguyễn
             </h1>
             <div className="hidden md:block ml-2 text-xs text-gray-500">
               Luxury Cars Expert
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item) => (
-              <a 
-                key={item.name}
-                href={item.href}
-                className="text-gray-700 hover:text-black transition-colors duration-300 font-inter font-medium"
-              >
-                {item.name}
-              </a>
+              item.href.startsWith('/#') ? (
+                <a 
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-700 hover:text-black transition-colors duration-300 font-inter font-medium"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link 
+                  key={item.name}
+                  to={item.href}
+                  className="text-gray-700 hover:text-black transition-colors duration-300 font-inter font-medium"
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </nav>
 
           <div className="flex items-center space-x-4">
-            <Button variant="outline" className="hidden md:flex font-inter">
-              Đặt lịch tư vấn
-            </Button>
+            <Link to="/contact">
+              <Button variant="outline" className="hidden md:flex font-inter">
+                Đặt lịch tư vấn
+              </Button>
+            </Link>
             
             {/* Mobile menu button */}
             <button
@@ -83,18 +96,31 @@ const Header = () => {
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-4">
               {menuItems.map((item) => (
-                <a 
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-700 hover:text-black transition-colors duration-300 font-inter font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
+                item.href.startsWith('/#') ? (
+                  <a 
+                    key={item.name}
+                    href={item.href}
+                    className="text-gray-700 hover:text-black transition-colors duration-300 font-inter font-medium py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link 
+                    key={item.name}
+                    to={item.href}
+                    className="text-gray-700 hover:text-black transition-colors duration-300 font-inter font-medium py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
-              <Button className="mt-4 font-inter">
-                Đặt lịch tư vấn
-              </Button>
+              <Link to="/contact">
+                <Button className="mt-4 font-inter w-full">
+                  Đặt lịch tư vấn
+                </Button>
+              </Link>
             </nav>
           </div>
         </div>
