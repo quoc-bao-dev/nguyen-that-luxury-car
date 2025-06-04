@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AutoScrollToTop from "./components/features/AutoScrollToTop";
+import PageLoading from "./components/PageLoading";
 
 // Lazy load pages
 const Index = lazy(() => import("./pages/Index"));
@@ -35,7 +36,7 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <AutoScrollToTop />
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<PageLoading />}>
             <Routes>
               {/* Public routes */}
               <Route path="/" element={<Index />} />
