@@ -14,6 +14,14 @@ import Contact from "./pages/Contact";
 import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
 
+// Admin imports
+import AdminLogin from "./pages/admin/Login";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminPosts from "./pages/admin/Posts";
+import PostEditor from "./pages/admin/PostEditor";
+import AdminAppointments from "./pages/admin/Appointments";
+import ProtectedRoute from "./components/admin/ProtectedRoute";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -23,6 +31,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Public routes */}
           <Route path="/" element={<Index />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetail />} />
@@ -31,6 +40,30 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<Search />} />
+          
+          {/* Admin routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/posts" element={
+            <ProtectedRoute>
+              <AdminPosts />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/posts/new" element={
+            <ProtectedRoute>
+              <PostEditor />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/appointments" element={
+            <ProtectedRoute>
+              <AdminAppointments />
+            </ProtectedRoute>
+          } />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
