@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -130,14 +129,14 @@ const Blog = () => {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-6 font-inter">
+              <Badge variant="outline" className="mb-6 font-sans">
                 Blog & Tin tức
               </Badge>
-              <h1 className="font-playfair text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="font-sans text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Khám phá thế giới
                 <span className="block text-luxury-gold">Xe cao cấp</span>
               </h1>
-              <p className="font-inter text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="font-sans text-xl text-gray-600 max-w-3xl mx-auto">
                 Cập nhật thông tin thị trường, đánh giá xe, tư vấn chọn xe và 
                 những kiến thức bổ ích về thế giới ô tô cao cấp.
               </p>
@@ -153,13 +152,13 @@ const Blog = () => {
                       placeholder="Tìm kiếm bài viết..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 font-inter"
+                      className="pl-10 font-sans"
                     />
                   </div>
                 </div>
                 
                 <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger className="font-inter">
+                  <SelectTrigger className="font-sans">
                     <SelectValue placeholder="Chọn chủ đề" />
                   </SelectTrigger>
                   <SelectContent>
@@ -179,7 +178,7 @@ const Blog = () => {
         {featuredPost && selectedCategory === 'all' && !searchTerm && (
           <section className="py-16">
             <div className="container mx-auto px-4">
-              <h2 className="font-playfair text-3xl font-bold text-gray-900 mb-8 text-center">
+              <h2 className="font-sans text-3xl font-bold text-gray-900 mb-8 text-center">
                 Bài viết nổi bật
               </h2>
               
@@ -191,21 +190,21 @@ const Blog = () => {
                       alt={featuredPost.title}
                       className="w-full h-full object-cover min-h-[400px]"
                     />
-                    <Badge className="absolute top-4 left-4 bg-luxury-gold text-black font-inter">
+                    <Badge className="absolute top-4 left-4 bg-luxury-gold text-black font-sans">
                       Nổi bật
                     </Badge>
                   </div>
                   
                   <CardContent className="p-8 lg:p-12 flex flex-col justify-center">
-                    <Badge variant="outline" className="w-fit mb-4 font-inter">
+                    <Badge variant="outline" className="w-fit mb-4 font-sans">
                       {featuredPost.categoryLabel}
                     </Badge>
                     
-                    <h3 className="font-playfair text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                    <h3 className="font-sans text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
                       {featuredPost.title}
                     </h3>
                     
-                    <p className="font-inter text-gray-600 mb-6 leading-relaxed">
+                    <p className="font-sans text-gray-600 mb-6 leading-relaxed">
                       {featuredPost.excerpt}
                     </p>
                     
@@ -224,10 +223,12 @@ const Blog = () => {
                       </div>
                     </div>
                     
-                    <Button className="w-fit font-inter bg-luxury-gold hover:bg-luxury-gold/90 text-black">
-                      Đọc bài viết
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
+                    <Link to={`/blog/${featuredPost.id}`}>
+                      <Button className="w-fit font-sans bg-luxury-gold hover:bg-luxury-gold/90 text-black">
+                        Đọc bài viết
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
                   </CardContent>
                 </div>
               </Card>
@@ -240,17 +241,17 @@ const Blog = () => {
           <div className="container mx-auto px-4">
             {searchTerm || selectedCategory !== 'all' ? (
               <div className="mb-8">
-                <h2 className="font-playfair text-3xl font-bold text-gray-900 mb-4">
+                <h2 className="font-sans text-3xl font-bold text-gray-900 mb-4">
                   Kết quả tìm kiếm
                 </h2>
-                <p className="font-inter text-gray-600">
+                <p className="font-sans text-gray-600">
                   Hiển thị {filteredPosts.length} bài viết
                   {searchTerm && ` cho "${searchTerm}"`}
                   {selectedCategory !== 'all' && ` trong "${categories.find(c => c.value === selectedCategory)?.label}"`}
                 </p>
               </div>
             ) : (
-              <h2 className="font-playfair text-3xl font-bold text-gray-900 mb-8 text-center">
+              <h2 className="font-sans text-3xl font-bold text-gray-900 mb-8 text-center">
                 Bài viết mới nhất
               </h2>
             )}
@@ -270,7 +271,7 @@ const Blog = () => {
                     
                     <Badge 
                       variant="outline" 
-                      className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm font-inter"
+                      className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm font-sans"
                     >
                       {post.categoryLabel}
                     </Badge>
@@ -283,11 +284,11 @@ const Blog = () => {
                   </div>
 
                   <CardContent className="p-6">
-                    <h3 className="font-playfair text-xl font-bold text-gray-900 mb-3 group-hover:text-luxury-gold transition-colors line-clamp-2">
+                    <h3 className="font-sans text-xl font-bold text-gray-900 mb-3 group-hover:text-luxury-gold transition-colors line-clamp-2">
                       {post.title}
                     </h3>
                     
-                    <p className="font-inter text-gray-600 mb-4 leading-relaxed line-clamp-3">
+                    <p className="font-sans text-gray-600 mb-4 leading-relaxed line-clamp-3">
                       {post.excerpt}
                     </p>
                     
@@ -313,10 +314,12 @@ const Blog = () => {
                         </div>
                       </div>
                       
-                      <Button variant="ghost" size="sm" className="font-inter p-0 h-auto text-luxury-gold hover:text-luxury-gold/80">
-                        Đọc thêm
-                        <ArrowRight className="w-4 h-4 ml-1" />
-                      </Button>
+                      <Link to={`/blog/${post.id}`}>
+                        <Button variant="ghost" size="sm" className="font-sans p-0 h-auto text-luxury-gold hover:text-luxury-gold/80">
+                          Đọc thêm
+                          <ArrowRight className="w-4 h-4 ml-1" />
+                        </Button>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>
@@ -328,10 +331,10 @@ const Blog = () => {
                 <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Search className="w-12 h-12 text-gray-400" />
                 </div>
-                <h3 className="font-playfair text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="font-sans text-2xl font-bold text-gray-900 mb-4">
                   Không tìm thấy bài viết
                 </h3>
-                <p className="font-inter text-gray-600 mb-8">
+                <p className="font-sans text-gray-600 mb-8">
                   Hãy thử tìm kiếm với từ khóa khác hoặc chọn chủ đề khác.
                 </p>
                 <Button 
@@ -339,7 +342,7 @@ const Blog = () => {
                     setSearchTerm('');
                     setSelectedCategory('all');
                   }}
-                  className="font-inter"
+                  className="font-sans"
                 >
                   Xem tất cả bài viết
                 </Button>
@@ -349,7 +352,7 @@ const Blog = () => {
             {/* Load More */}
             {filteredPosts.length > 0 && (
               <div className="text-center mt-12">
-                <Button variant="outline" size="lg" className="font-inter">
+                <Button variant="outline" size="lg" className="font-sans">
                   Xem thêm bài viết
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
@@ -362,10 +365,10 @@ const Blog = () => {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="font-sans text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Đăng ký nhận bài viết mới
               </h2>
-              <p className="font-inter text-xl text-gray-600 mb-8">
+              <p className="font-sans text-xl text-gray-600 mb-8">
                 Cập nhật những bài viết mới nhất về thế giới xe cao cấp, 
                 xu hướng thị trường và tư vấn chuyên nghiệp.
               </p>
@@ -373,13 +376,13 @@ const Blog = () => {
                 <Input 
                   type="email" 
                   placeholder="Nhập địa chỉ email của bạn"
-                  className="font-inter"
+                  className="font-sans"
                 />
-                <Button className="font-inter bg-luxury-gold hover:bg-luxury-gold/90 text-black">
+                <Button className="font-sans bg-luxury-gold hover:bg-luxury-gold/90 text-black">
                   Đăng ký ngay
                 </Button>
               </div>
-              <p className="font-inter text-sm text-gray-500 mt-4">
+              <p className="font-sans text-sm text-gray-500 mt-4">
                 Miễn phí. Có thể hủy đăng ký bất kỳ lúc nào.
               </p>
             </div>
