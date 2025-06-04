@@ -1,22 +1,21 @@
-
-import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import React, { useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
-import { 
-  Calendar, 
-  User, 
-  Eye, 
-  MessageCircle, 
-  Share2, 
-  Heart, 
-  Bookmark, 
+import {
+  Calendar,
+  User,
+  Eye,
+  MessageCircle,
+  Share2,
+  Heart,
+  Bookmark,
   ArrowRight,
   Facebook,
   Twitter,
@@ -25,21 +24,15 @@ import {
   Mail,
   Clock,
   Tag,
-  Quote
+  Quote,
 } from "lucide-react";
 
-const BlogDetail = () => {
-  const { id } = useParams();
-  const [liked, setLiked] = useState(false);
-  const [bookmarked, setBookmarked] = useState(false);
-  const [commentText, setCommentText] = useState('');
-
-  // Mock blog data - trong thực tế sẽ fetch từ API
-  const blogPost = {
-    id: 1,
-    title: "Porsche 911 2024: Liệu có xứng đáng với mức giá 8.5 tỷ VND?",
-    subtitle: "Đánh giá toàn diện về biểu tượng tốc độ huyền thoại từ Stuttgart",
-    content: `
+// Mock blog data - trong thực tế sẽ fetch từ API
+const blogPost = {
+  id: 1,
+  title: "Porsche 911 2024: Liệu có xứng đáng với mức giá 8.5 tỷ VND?",
+  subtitle: "Đánh giá toàn diện về biểu tượng tốc độ huyền thoại từ Stuttgart",
+  content: `
       <p>Porsche 911 là một trong những biểu tượng xe thể thao được yêu thích nhất trên thế giới. Với lịch sử phát triển hơn 60 năm, dòng xe này đã trở thành tiêu chuẩn vàng cho những ai đam mê tốc độ và phong cách.</p>
       
       <h2>Thiết kế ngoại thất: Tinh hoa của nghệ thuật ô tô</h2>
@@ -70,88 +63,104 @@ const BlogDetail = () => {
       
       <p>Với mức giá 8.5 tỷ VND, Porsche 911 Carrera S 2024 không phải là lựa chọn dành cho số đông. Tuy nhiên, nếu bạn đang tìm kiếm một chiếc xe thể thao mang tính biểu tượng, với hiệu suất vượt trội và thiết kế vượt thời gian, thì 911 chính là lựa chọn hoàn hảo.</p>
     `,
-    category: "car-reviews",
-    categoryLabel: "Đánh giá xe",
-    author: "Thật Nguyễn",
-    authorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-    authorBio: "Chuyên gia tư vấn xe cao cấp với hơn 10 năm kinh nghiệm. Đam mê khám phá và chia sẻ về thế giới ô tô.",
+  category: "car-reviews",
+  categoryLabel: "Đánh giá xe",
+  author: "Thật Nguyễn",
+  authorAvatar:
+    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+  authorBio:
+    "Chuyên gia tư vấn xe cao cấp với hơn 10 năm kinh nghiệm. Đam mê khám phá và chia sẻ về thế giới ô tô.",
+  date: "15/12/2024",
+  readTime: "8 phút đọc",
+  image:
+    "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+  views: 2450,
+  likes: 186,
+  comments: 18,
+  tags: ["Porsche", "911", "Đánh giá xe", "Xe thể thao", "Luxury Cars"],
+};
+
+const relatedPosts = [
+  {
+    id: 2,
+    title: "Mercedes S-Class 2024: Đỉnh cao của sự sang trọng",
+    image:
+      "https://images.unsplash.com/photo-1606016159991-f4d7c8d6c0d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    category: "Đánh giá xe",
+    date: "12/12/2024",
+    readTime: "10 phút đọc",
+  },
+  {
+    id: 3,
+    title: "Top 5 xe cao cấp đáng mua nhất năm 2024",
+    image:
+      "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    category: "Tư vấn chọn xe",
+    date: "10/12/2024",
+    readTime: "12 phút đọc",
+  },
+  {
+    id: 4,
+    title: "Xu hướng công nghệ ô tô trong năm 2025",
+    image:
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    category: "Công nghệ",
+    date: "08/12/2024",
+    readTime: "6 phút đọc",
+  },
+];
+
+const comments = [
+  {
+    id: 1,
+    author: "Minh Hoàng",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+    date: "16/12/2024",
+    content:
+      "Bài viết rất chi tiết và hữu ích! Tôi đang cân nhắc mua 911, thông tin này giúp tôi quyết định được rồi.",
+    likes: 12,
+  },
+  {
+    id: 2,
+    author: "Thu Hương",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
     date: "15/12/2024",
-    readTime: "8 phút đọc",
-    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
-    views: 2450,
-    likes: 186,
-    comments: 18,
-    tags: ["Porsche", "911", "Đánh giá xe", "Xe thể thao", "Luxury Cars"]
-  };
+    content:
+      "Anh Thật viết hay quá! Mong có thêm nhiều bài đánh giá về các dòng xe khác nữa ạ.",
+    likes: 8,
+  },
+];
 
-  const relatedPosts = [
-    {
-      id: 2,
-      title: "Mercedes S-Class 2024: Đỉnh cao của sự sang trọng",
-      image: "https://images.unsplash.com/photo-1606016159991-f4d7c8d6c0d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "Đánh giá xe",
-      date: "12/12/2024",
-      readTime: "10 phút đọc"
-    },
-    {
-      id: 3,
-      title: "Top 5 xe cao cấp đáng mua nhất năm 2024",
-      image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "Tư vấn chọn xe",
-      date: "10/12/2024",
-      readTime: "12 phút đọc"
-    },
-    {
-      id: 4,
-      title: "Xu hướng công nghệ ô tô trong năm 2025",
-      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "Công nghệ",
-      date: "08/12/2024",
-      readTime: "6 phút đọc"
-    }
-  ];
-
-  const comments = [
-    {
-      id: 1,
-      author: "Minh Hoàng",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-      date: "16/12/2024",
-      content: "Bài viết rất chi tiết và hữu ích! Tôi đang cân nhắc mua 911, thông tin này giúp tôi quyết định được rồi.",
-      likes: 12
-    },
-    {
-      id: 2,
-      author: "Thu Hương",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-      date: "15/12/2024",
-      content: "Anh Thật viết hay quá! Mong có thêm nhiều bài đánh giá về các dòng xe khác nữa ạ.",
-      likes: 8
-    }
-  ];
+const BlogDetail = () => {
+  const { id } = useParams();
+  const [liked, setLiked] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
+  const [commentText, setCommentText] = useState("");
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       <main className="pt-32">
         {/* Hero Section */}
         <section className="relative py-20 bg-gray-900 text-white">
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{ backgroundImage: `url('${blogPost.image}')` }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30" />
-          
+
           <div className="relative container mx-auto px-4 text-center">
             <Badge className="mb-6 bg-luxury-gold text-black font-sans">
               {blogPost.categoryLabel}
             </Badge>
-            
+
             <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               {blogPost.title}
             </h1>
-            
+
             <p className="font-sans text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto">
               {blogPost.subtitle}
             </p>
@@ -187,26 +196,38 @@ const BlogDetail = () => {
                   <button
                     onClick={() => setLiked(!liked)}
                     className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-colors ${
-                      liked ? 'bg-red-100 text-red-600' : 'bg-white hover:bg-gray-100'
+                      liked
+                        ? "bg-red-100 text-red-600"
+                        : "bg-white hover:bg-gray-100"
                     }`}
                   >
-                    <Heart className={`w-5 h-5 ${liked ? 'fill-current' : ''}`} />
-                    <span className="font-sans">{blogPost.likes + (liked ? 1 : 0)}</span>
+                    <Heart
+                      className={`w-5 h-5 ${liked ? "fill-current" : ""}`}
+                    />
+                    <span className="font-sans">
+                      {blogPost.likes + (liked ? 1 : 0)}
+                    </span>
                   </button>
-                  
+
                   <button
                     onClick={() => setBookmarked(!bookmarked)}
                     className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-colors ${
-                      bookmarked ? 'bg-blue-100 text-blue-600' : 'bg-white hover:bg-gray-100'
+                      bookmarked
+                        ? "bg-blue-100 text-blue-600"
+                        : "bg-white hover:bg-gray-100"
                     }`}
                   >
-                    <Bookmark className={`w-5 h-5 ${bookmarked ? 'fill-current' : ''}`} />
+                    <Bookmark
+                      className={`w-5 h-5 ${bookmarked ? "fill-current" : ""}`}
+                    />
                     <span className="font-sans">Lưu bài</span>
                   </button>
                 </div>
 
                 <div className="flex items-center space-x-2">
-                  <span className="font-sans text-sm text-gray-600">Chia sẻ:</span>
+                  <span className="font-sans text-sm text-gray-600">
+                    Chia sẻ:
+                  </span>
                   <button className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
                     <Facebook className="w-4 h-4" />
                   </button>
@@ -221,7 +242,7 @@ const BlogDetail = () => {
 
               {/* Article Content */}
               <article className="prose prose-lg max-w-none font-sans">
-                <div 
+                <div
                   dangerouslySetInnerHTML={{ __html: blogPost.content }}
                   className="leading-relaxed"
                 />
@@ -326,23 +347,30 @@ const BlogDetail = () => {
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 bg-red-100 relative">
               {/* Contact CTA */}
-              <Card className="mb-8 border-0 bg-luxury-gold text-black">
+              <Card className="mb-8 border-0 bg-luxury-gold text-black sticky top-28 z-50">
                 <CardContent className="p-6 text-center">
                   <Quote className="w-12 h-12 mx-auto mb-4" />
                   <h3 className="font-sans text-xl font-bold mb-3">
                     Cần tư vấn chuyên nghiệp?
                   </h3>
                   <p className="font-sans mb-4">
-                    Liên hệ trực tiếp với chuyên gia Thật Nguyễn để được tư vấn miễn phí
+                    Liên hệ trực tiếp với chuyên gia Thật Nguyễn để được tư vấn
+                    miễn phí
                   </p>
                   <div className="space-y-3">
-                    <Button variant="outline" className="w-full border-black text-black hover:bg-black hover:text-luxury-gold font-sans">
+                    <Button
+                      variant="outline"
+                      className="w-full border-black text-black hover:bg-black hover:text-luxury-gold font-sans"
+                    >
                       <Phone className="w-4 h-4 mr-2" />
                       Gọi ngay
                     </Button>
-                    <Button variant="outline" className="w-full border-black text-black hover:bg-black hover:text-luxury-gold font-sans">
+                    <Button
+                      variant="outline"
+                      className="w-full border-black text-black hover:bg-black hover:text-luxury-gold font-sans"
+                    >
                       <Mail className="w-4 h-4 mr-2" />
                       Email tư vấn
                     </Button>
@@ -365,7 +393,10 @@ const BlogDetail = () => {
                             alt={post.title}
                             className="w-full h-32 object-cover rounded-lg mb-3 group-hover:opacity-80 transition-opacity"
                           />
-                          <Badge variant="outline" className="mb-2 font-sans text-xs">
+                          <Badge
+                            variant="outline"
+                            className="mb-2 font-sans text-xs"
+                          >
                             {post.category}
                           </Badge>
                           <h4 className="font-sans font-semibold text-gray-900 group-hover:text-luxury-gold transition-colors line-clamp-2 mb-2">

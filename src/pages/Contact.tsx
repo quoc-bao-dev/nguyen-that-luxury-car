@@ -1,22 +1,21 @@
-
-import React from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import React from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Clock, 
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
   MessageCircle,
   Send,
   Facebook,
   Instagram,
-  Calendar
+  Calendar,
 } from "lucide-react";
 
 const Contact = () => {
@@ -25,39 +24,39 @@ const Contact = () => {
       icon: Phone,
       title: "Hotline 24/7",
       details: ["+84 901 234 567", "+84 028 3942 5678"],
-      description: "Hỗ trợ tư vấn và khẩn cấp mọi lúc"
+      description: "Hỗ trợ tư vấn và khẩn cấp mọi lúc",
     },
     {
       icon: Mail,
       title: "Email",
       details: ["contact@thatnguyen.vn", "support@thatnguyen.vn"],
-      description: "Gửi yêu cầu tư vấn chi tiết"
+      description: "Gửi yêu cầu tư vấn chi tiết",
     },
     {
       icon: MapPin,
       title: "Showroom chính",
       details: ["123 Đường Nguyễn Huệ", "Quận 1, TP. Hồ Chí Minh"],
-      description: "Tham quan và test drive xe"
+      description: "Tham quan và test drive xe",
     },
     {
       icon: MessageCircle,
       title: "Chat trực tuyến",
       details: ["Zalo: 0901234567", "Messenger: Thật Nguyễn"],
-      description: "Tư vấn nhanh qua tin nhắn"
-    }
+      description: "Tư vấn nhanh qua tin nhắn",
+    },
   ];
 
   const workingHours = [
     { day: "Thứ 2 - Thứ 6", time: "8:00 - 18:00" },
     { day: "Thứ 7", time: "8:00 - 17:00" },
     { day: "Chủ nhật", time: "9:00 - 16:00" },
-    { day: "Lễ/Tết", time: "Theo thông báo" }
+    { day: "Lễ/Tết", time: "Theo thông báo" },
   ];
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       <main className="pt-32">
         {/* Hero Section */}
         <section className="py-16 bg-gray-50">
@@ -67,11 +66,13 @@ const Contact = () => {
             </Badge>
             <h1 className="font-playfair text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Sẵn sàng
-              <span className="block text-luxury-gold">Hỗ trợ bạn 24/7</span>
+              <span className="block text-luxury-gold mt-3">
+                Hỗ trợ bạn 24/7
+              </span>
             </h1>
-            <p className="font-inter text-xl text-gray-600 max-w-3xl mx-auto">
-              Đội ngũ chuyên gia của Thật Nguyễn luôn sẵn sàng tư vấn và hỗ trợ bạn 
-              tìm được chiếc xe cao cấp hoàn hảo nhất.
+            <p className="font-inter text-xl text-gray-600 max-w-3xl mx-auto ">
+              Đội ngũ chuyên gia của Thật Nguyễn luôn sẵn sàng tư vấn và hỗ trợ
+              bạn tìm được chiếc xe cao cấp hoàn hảo nhất.
             </p>
           </div>
         </section>
@@ -81,7 +82,7 @@ const Contact = () => {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
               {contactInfo.map((info, index) => (
-                <Card 
+                <Card
                   key={index}
                   className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow duration-300"
                 >
@@ -94,7 +95,10 @@ const Contact = () => {
                     </h3>
                     <div className="space-y-1 mb-4">
                       {info.details.map((detail, i) => (
-                        <p key={i} className="font-inter text-gray-700 font-medium">
+                        <p
+                          key={i}
+                          className="font-inter text-gray-700 font-medium"
+                        >
                           {detail}
                         </p>
                       ))}
@@ -114,25 +118,26 @@ const Contact = () => {
                   Gửi yêu cầu tư vấn
                 </h2>
                 <p className="font-inter text-gray-600 mb-8">
-                  Điền thông tin bên dưới, chúng tôi sẽ liên hệ với bạn trong vòng 30 phút.
+                  Điền thông tin bên dưới, chúng tôi sẽ liên hệ với bạn trong
+                  vòng 30 phút.
                 </p>
 
                 <form className="space-y-6">
                   <div className="grid grid-cols-2 gap-4">
-                    <Input 
-                      placeholder="Họ và tên *" 
+                    <Input
+                      placeholder="Họ và tên *"
                       className="font-inter"
                       required
                     />
-                    <Input 
-                      placeholder="Số điện thoại *" 
+                    <Input
+                      placeholder="Số điện thoại *"
                       className="font-inter"
                       required
                     />
                   </div>
-                  
-                  <Input 
-                    placeholder="Email" 
+
+                  <Input
+                    placeholder="Email"
                     type="email"
                     className="font-inter"
                   />
@@ -156,20 +161,27 @@ const Contact = () => {
                     <option>Trên 12 tỷ VND</option>
                   </select>
 
-                  <Textarea 
-                    placeholder="Mô tả chi tiết nhu cầu của bạn (mẫu xe quan tâm, màu sắc, thời gian dự kiến mua...)..." 
+                  <Textarea
+                    placeholder="Mô tả chi tiết nhu cầu của bạn (mẫu xe quan tâm, màu sắc, thời gian dự kiến mua...)..."
                     className="font-inter"
                     rows={5}
                   />
 
                   <div className="flex items-center space-x-3 text-sm text-gray-600">
-                    <input type="checkbox" id="newsletter" className="rounded" />
+                    <input
+                      type="checkbox"
+                      id="newsletter"
+                      className="rounded"
+                    />
                     <label htmlFor="newsletter" className="font-inter">
                       Đăng ký nhận thông tin xe mới và ưu đãi đặc biệt
                     </label>
                   </div>
 
-                  <Button size="lg" className="w-full font-inter text-lg py-6 bg-luxury-gold hover:bg-luxury-gold/90 text-black">
+                  <Button
+                    size="lg"
+                    className="w-full font-inter text-lg py-6 bg-luxury-gold hover:bg-luxury-gold/90 text-black"
+                  >
                     <Send className="w-5 h-5 mr-2" />
                     Gửi yêu cầu tư vấn
                   </Button>
@@ -179,15 +191,27 @@ const Contact = () => {
                       Hoặc liên hệ trực tiếp qua:
                     </p>
                     <div className="flex justify-center space-x-4">
-                      <Button variant="outline" size="sm" className="font-inter">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="font-inter"
+                      >
                         <Phone className="w-4 h-4 mr-2" />
                         Gọi ngay
                       </Button>
-                      <Button variant="outline" size="sm" className="font-inter">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="font-inter"
+                      >
                         <MessageCircle className="w-4 h-4 mr-2" />
                         Chat Zalo
                       </Button>
-                      <Button variant="outline" size="sm" className="font-inter">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="font-inter"
+                      >
                         <Calendar className="w-4 h-4 mr-2" />
                         Đặt lịch hẹn
                       </Button>
@@ -212,16 +236,24 @@ const Contact = () => {
                       </div>
                       <div className="space-y-3">
                         {workingHours.map((schedule, i) => (
-                          <div key={i} className="flex justify-between items-center">
-                            <span className="font-inter text-gray-700">{schedule.day}</span>
-                            <span className="font-inter font-medium text-gray-900">{schedule.time}</span>
+                          <div
+                            key={i}
+                            className="flex justify-between items-center"
+                          >
+                            <span className="font-inter text-gray-700">
+                              {schedule.day}
+                            </span>
+                            <span className="font-inter font-medium text-gray-900">
+                              {schedule.time}
+                            </span>
                           </div>
                         ))}
                       </div>
                       <div className="mt-6 p-4 bg-luxury-gold/10 rounded-lg">
                         <p className="font-inter text-sm text-gray-700">
-                          <strong>Lưu ý:</strong> Tư vấn trực tuyến và hỗ trợ khẩn cấp 24/7. 
-                          Có thể đặt lịch hẹn ngoài giờ theo yêu cầu.
+                          <strong>Lưu ý:</strong> Tư vấn trực tuyến và hỗ trợ
+                          khẩn cấp 24/7. Có thể đặt lịch hẹn ngoài giờ theo yêu
+                          cầu.
                         </p>
                       </div>
                     </CardContent>
@@ -241,7 +273,8 @@ const Contact = () => {
                             Showroom Thật Nguyễn - Quận 1
                           </h4>
                           <p className="font-inter text-gray-700 mb-4">
-                            123 Đường Nguyễn Huệ, Phường Bến Nghé,<br />
+                            123 Đường Nguyễn Huệ, Phường Bến Nghé,
+                            <br />
                             Quận 1, Thành phố Hồ Chí Minh
                           </p>
                           <div className="grid grid-cols-2 gap-4 text-sm">
@@ -250,7 +283,9 @@ const Contact = () => {
                               <span className="font-medium ml-2">1,200m²</span>
                             </div>
                             <div>
-                              <span className="text-gray-600">Xe trưng bày:</span>
+                              <span className="text-gray-600">
+                                Xe trưng bày:
+                              </span>
                               <span className="font-medium ml-2">15+ mẫu</span>
                             </div>
                             <div>
@@ -279,28 +314,28 @@ const Contact = () => {
                   <Card>
                     <CardContent className="p-6">
                       <div className="flex space-x-4 mb-6">
-                        <a 
-                          href="#" 
+                        <a
+                          href="#"
                           className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
                         >
                           <Facebook className="w-6 h-6 text-white" />
                         </a>
-                        <a 
-                          href="#" 
+                        <a
+                          href="#"
                           className="w-12 h-12 bg-pink-600 rounded-lg flex items-center justify-center hover:bg-pink-700 transition-colors"
                         >
                           <Instagram className="w-6 h-6 text-white" />
                         </a>
-                        <a 
-                          href="#" 
+                        <a
+                          href="#"
                           className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors"
                         >
                           <MessageCircle className="w-6 h-6 text-white" />
                         </a>
                       </div>
                       <p className="font-inter text-sm text-gray-600">
-                        Theo dõi chúng tôi để cập nhật thông tin xe mới, 
-                        ưu đãi đặc biệt và sự kiện showroom.
+                        Theo dõi chúng tôi để cập nhật thông tin xe mới, ưu đãi
+                        đặc biệt và sự kiện showroom.
                       </p>
                     </CardContent>
                   </Card>
@@ -321,7 +356,7 @@ const Contact = () => {
                 Tọa lạc tại trung tâm Quận 1, thuận tiện di chuyển và đậu xe
               </p>
             </div>
-            
+
             <div className="bg-gray-300 rounded-2xl h-96 flex items-center justify-center">
               <div className="text-center">
                 <MapPin className="w-16 h-16 text-gray-600 mx-auto mb-4" />
